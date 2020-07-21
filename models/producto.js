@@ -6,7 +6,7 @@ getProducts = async () => {
 //manejo de errores
    try {
     //dentro de try se hacen las consultas
-    const query = "SELECT id,nombre,descripcion,precio,imagen FROM producto LIMIT 6";
+    const query = "SELECT id,nombre,descripcion,precio,imagen FROM producto";
     const rows = await pool.query(query);
     return rows;
 

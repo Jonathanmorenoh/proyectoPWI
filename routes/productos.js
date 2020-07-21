@@ -17,6 +17,10 @@ const producto = require('./../models/producto');
     //productos totales
 
     router.get('/', async (req,res,next)=>{
-        res.render('productos',{title:'Nuestros productos'});
+        const productos = await serviceProducts.getProducts();
+        console.log(productos);
+        res.render('productos',{title:'Nuestros productos',
+    productos : productos
+});
     });
 module.exports = router;
