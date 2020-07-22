@@ -1,0 +1,35 @@
+<!--<div class="register-login-section spad">-->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Productos cargados</h3>
+                    <div class="col-4 mt-3">
+                    <a class="site-btn" href="/admin/productos/alta">Alta de roducto</a>
+                    {{! admin/productos/alta}}
+                </div>
+                    <table class="table table-hover table-responsive mt-3">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Imagen</th>
+                                <th>Precio</th>
+                                <th>Categoria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each productos}}
+                            <tr>
+                                <td>{{nombre}}</td>
+                                <td>{{descripcion}}</td>
+                                <td><img src="/{{imagen}}" style="width: 100px; height:auto"></td>
+                                <td>{{precio}}</td>
+                                <td>{{nombre_categoria}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</div>
