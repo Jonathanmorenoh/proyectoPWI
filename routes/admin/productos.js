@@ -1,8 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { getProducts, create }= require('./../../models/producto');
+const { getProducts, create, update }= require('./../../models/producto');
 const { getCategories } = require('./../../models/categoria');
 //rutas de mas nivel van arriba
+
+//productos baja
+router.get('/baja/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const result = await update(id,{estado: false});
+        res.redirect('/admin/productos');
+    } catch (error){
+
+    }
+});
 
 //admin/productos/alta
 router.get('/alta', async (req,res) => {
@@ -27,6 +38,7 @@ router.post('/alta', async (req, res) => {
     console.log(error);
 }
 });
+
 
 //cargar todos los productos de la pagina
 router.get('/',async function (req, res, next) {

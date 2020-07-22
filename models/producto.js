@@ -6,7 +6,7 @@ getProducts = async () => {
 //manejo de errores
    try {
     //dentro de try se hacen las consultas
-    const query = "SELECT producto.id, producto.nombre, producto.descripcion,producto.precio,producto.imagen,categoria_principal.nombre as nombre_categoria  FROM producto JOIN categoria_principal ON producto.id_categoria = categoria_principal.id";
+    const query = "SELECT producto.id, producto.nombre, producto.descripcion,producto.precio,producto.imagen,categoria_principal.nombre as nombre_categoria  FROM producto JOIN categoria_principal ON producto.id_categoria = categoria_principal.id where estado = 1 order by id desc";
     const rows = await pool.query(query, [
       process.env.TABLA_PRODUCTO,
       process.env.TABLA_CATEGORIAS,
@@ -31,6 +31,12 @@ getProduct = async (id) => {
   }
 };
 
+const update = async (id,obj) => {
+   const query = "UPDATE ?? SET ? where id = ?";
+    const params = [process.env.TABLA_PRODUCTO,obj,id];
+    return await pool.query(query,params);
+};
+
 const create = async (obj) => {
   const query = "INSERT INTO ?? SET ?";
   const params = [process.env.TABLA_PRODUCTO,obj];
@@ -42,4 +48,5 @@ module.exports = {
     getProducts,
     getProduct,
     create,
+    update,
 }
