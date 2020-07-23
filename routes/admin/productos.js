@@ -6,19 +6,31 @@ const { getCategories } = require('./../../models/categoria');
 
 //productos baja
 router.get('/baja/:id', async (req, res) => {
+    if(req.session.administrador){
     try {
         const {id} = req.params;
         const result = await update(id,{estado: false});
         res.redirect('/admin/productos');
     } catch (error){
 
+    }}
+    else{
+        res.send('No tenes permisos para ingresar')
     }
 });
 
 //admin/productos/alta
 router.get('/alta', async (req,res) => {
+    if(req.session.administrador){
+        try{
     const categorias = await getCategories();
     res.render('altaproducto', {categorias});
+        }catch(error){
+
+        }}
+        else{
+            res.send('No tenes permisos para ingresar')
+        }
 });
 
 router.post('/alta', async (req, res) => {
@@ -42,12 +54,16 @@ router.post('/alta', async (req, res) => {
 
 //cargar todos los productos de la pagina
 router.get('/',async function (req, res, next) {
-   try{
-     const productos = await getProducts();
-    console.log(productos);
-    res.render('adminproductos', {productos});
-} catch(error) {
-}
+   if(req.session.administrador){
+    try{
+        const productos = await getProducts();
+       console.log(productos);
+       res.render('adminproductos', {productos});
+   } catch(error) {
+   }}
+   else{
+       res.send('No tenes permisos para ingresar')
+   }
 });
 
 module.exports = router;

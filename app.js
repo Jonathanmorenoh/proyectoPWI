@@ -14,7 +14,9 @@ const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const contactRouter = require('./routes/contact');
 const productosRouter = require('./routes/productos');
+const adminUsuariosRouter = require('./routes/admin/usuarios');
 const adminProductosRouter = require('./routes/admin/productos');
+const session = require('express-session');
 
 var app = express();
 
@@ -27,6 +29,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: '1234',
+  resave: true,
+  saveUninitialized: true,
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -35,7 +42,9 @@ app.use('/register',registerRouter);
 app.use('/contact',contactRouter);
 app.use('/productos',productosRouter);
 //rutas admin
+app.use('/admin/usuarios', adminUsuariosRouter);
 app.use('/admin/productos',adminProductosRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
