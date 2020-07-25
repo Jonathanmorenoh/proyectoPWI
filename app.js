@@ -16,6 +16,7 @@ const contactRouter = require('./routes/contact');
 const productosRouter = require('./routes/productos');
 const adminUsuariosRouter = require('./routes/admin/usuarios');
 const adminProductosRouter = require('./routes/admin/productos');
+const carritoRouter = require('./routes/carrito');
 const session = require('express-session');
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/login',loginRouter);
 app.use('/register',registerRouter);
 app.use('/contact',contactRouter);
 app.use('/productos',productosRouter);
+app.use('/carrito',carritoRouter);
 //rutas admin
 app.use('/admin/usuarios', adminUsuariosRouter);
 app.use('/admin/productos',adminProductosRouter);

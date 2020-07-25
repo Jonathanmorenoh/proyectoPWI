@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { getProducts, create, update }= require('./../../models/producto');
 const { getCategories } = require('./../../models/categoria');
+const imgHandler = require('./../../utils/imageHandler');
+const multer = require('multer');
+const config = { dest : './public/tmp' };//multer crea esta carpeta
+const upload = multer(config);// configure multer para que envie a config
+
 //rutas de mas nivel van arriba
 
 //productos baja
@@ -32,16 +37,19 @@ router.get('/alta', async (req,res) => {
             res.send('No tenes permisos para ingresar')
         }
 });
-
-router.post('/alta', async (req, res) => {
+//.array multiples archivos
+//.single un solo archivo
+router.post('/alta', upload.single('imagen'), async (req, res) => {
     try {
     const { nombre, descripcion, id_categoria, precio, descuento} = req.body;
+    const img = imgHandler.saveImage(req.file);
     const object = {
         nombre : nombre,
         descripcion : descripcion,
         id_categoria : parseInt(id_categoria),
         precio : precio,
         descuento : descuento,
+        imagen : img,
     };
     const result = await create(object);
     console.log(`El insert id retornado es : ${result}`);
