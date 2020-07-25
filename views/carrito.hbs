@@ -32,12 +32,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each carrito}}
                                 <tr>
-                                    <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
+                                    <td class="cart-pic first-row"><img src="{{imagen_producto}}" alt=""></td>
                                     <td class="cart-title first-row">
-                                        <h5>Pure Pineapple</h5>
+                                        <h5>{{nombre_producto}}</h5>
                                     </td>
-                                    <td class="p-price first-row">$60.00</td>
+                                    <td class="p-price first-row">ARS ${{precio}}</td>
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
@@ -45,9 +46,11 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="total-price first-row">$60.00</td>
+                                    <td><a href="/carrito/baja/{{id}}"></a></td>
+                                    <!--<td class="total-price first-row">$60.00</td>-->
                                     <td class="close-td first-row"><i class="ti-close"></i></td>
                                 </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
@@ -55,8 +58,8 @@
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                 <ul>
-                                    <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                    <li class="cart-total">Total <span>$240.00</span></li>
+                                    <li class="subtotal">Subtotal <span>$</span></li>
+                                    <li class="cart-total">Total <span>$</span></li>
                                 </ul>
                                 <a href="#" class="proceed-btn">PROCEDER AL PAGO</a>
                             </div>

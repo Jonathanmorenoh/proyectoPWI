@@ -31,11 +31,11 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
+                            <form method="post" action="/productos/{{producto.id}}">
                             <div class="product-details">
                                 <div class="pd-title">
                                     <span>Nuestro producto:</span>
                                     <h3>{{producto.nombre}}</h3>
-                                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                 </div>
                                 <div class="pd-rating">
                                     <i class="fa fa-star"></i>
@@ -50,10 +50,11 @@
                                 </div>
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="number" aria-valuemax="1" aria-valuemax="5">
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Agregar al carrito</a>
+                                    <button class="primary-btn pd-cart" type="submit">Agregar al carrito</button>
                                 </div>
+                            </form>
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span></li>
                                     <li><span>TAGS</span></li>

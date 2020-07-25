@@ -19,6 +19,8 @@ router.post('/', async (req, res, next)=>{
     const resultado = await logueado(usuario, pass);
     if(resultado.length == 1){
         console.log('Logueado');
+        req.session.username = usuario;
+        req.session.iniciado = true;
         if(resultado[0].admin == 1){
             req.session.administrador = true;
             res.redirect('/admin/productos');
